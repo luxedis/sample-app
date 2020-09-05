@@ -71,9 +71,12 @@ p {
   }
 }
 
-#logo:hover {
-  color: #fff;
-  text-decoration: none;
+li .header-list {
+  color: #fff !important;
+  font-weight: bold;
+  &:hover {
+    color: silver !important;
+  }
 }
 
 /* デバッグウインドウ */
