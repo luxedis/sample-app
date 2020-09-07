@@ -3,23 +3,24 @@
 <h1>プロフィール</h1>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-6 col-md-offset-3">
     <table class="table table-borderd" id="table-user">
-      <thead>
+      <tr>
+        <th class="active col-md-3"><%= User.human_attribute_name :id %></th>
+        <td class="col-md-9"><%= @user.id %></td>
+      </tr>
+      <tr>
+        <th class="active"><%= User.human_attribute_name :name %></td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th class="active"><%= User.human_attribute_name :email %></td>
+        <td><%= @user.email %></td>
+      </tr>
         <tr>
-          <th><%= User.human_attribute_name :name %></th>
-          <th><%= User.human_attribute_name :email %></th>
-          <th><%= User.human_attribute_name :created_at %></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td><%= @user.name %></td>
-          <td><%= @user.email %></td>
-          <td><%= @user.created_at %></td>
-        </tr>
-      </tbody>
+        <th class="active"><%= User.human_attribute_name :created_at %></td>
+        <td><%= l(@user.created_at, format: :long) %></td>
+      </tr>
     </table>
   </div>    
 </div>
