@@ -79,6 +79,22 @@ li .header-list {
   }
 }
 
+#dropdown-title {
+  background-color: teal;
+  font-weight: bold;
+  color: #fff !important;
+  &:hover {
+    color: silver !important;
+  }
+}
+
+li .dropdown-header {
+  background-color: rgba(200, 200, 200, 0.5);
+  font-weight: bold;
+}
+
+
+
 /* デバッグウインドウ */
 
 .debug_dump {
