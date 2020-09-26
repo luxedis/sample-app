@@ -1,5 +1,5 @@
-<% provide(:title, 'All Tasks') %>
-<h1>タスク一覧</h1>
+<% provide(:title, @user.name) %>
+<h1><%= @user.name %>のタスク一覧</h1>
 
 <div class="col-md-10 col-md-offset-1">
   <%= link_to "タスク新規作成", new_user_task_path, class: "btn btn-lg btn-primary pull-right" %>
@@ -13,7 +13,8 @@
 
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= link_to task.name, user %></td>
+        <td><%= link_to task.name, @user %></td>
+        <td><%= l(task.created_at, format: :long) %></td> <!-- タスク一覧の作成日 -->
       </tr>
     <% end %>
   </table>
