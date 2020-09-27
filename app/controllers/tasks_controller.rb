@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_action :set_user
-  before_action :set_task, only: %i(show edit update destroy)
   
   def index
     @tasks = @user.tasks.order(created_at: :asc)
@@ -9,7 +8,7 @@ class TasksController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def new
     @task = Task.new
   end
@@ -23,6 +22,22 @@ class TasksController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(task_params)
+      flash[:success] = "タスク情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+  
+  
   
   def edit
   end
