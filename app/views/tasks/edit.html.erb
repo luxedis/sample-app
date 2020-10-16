@@ -9,9 +9,9 @@
       <%= f.email_field :name, class: 'form-control' %>
 
       <%= f.label :description, class: "label-form" %>
-      <%= f.password_field :description, rows: 5, class: 'form-control' %>
+      <%= f.text_area :description, rows: 5, class: 'form-control' %>
 
-      <%= f.submit "更新", class: "btn btn-primary btn-block btn-form" %>
+      <%= f.submit "更新", class: "btn btn-primary btn-form" %>
       <%= link_to "キャンセル", user_tasks_path, class: "btn btn-default btn-form" %>
     <% end %>
   </div>
