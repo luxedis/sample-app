@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
+    @task = @user.tasks.find(params[:id])
   end
 
   def new
@@ -28,10 +28,10 @@ class TasksController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(task_params)
+    @task = @user.tasks.find(params[:user_id])
+    if @task.update_attributes(task_params)
       flash[:success] = "タスク情報を更新しました。"
-      redirect_to @user
+      redirect_to user_task_path(@user, @task)
     else
       render :edit
     end
@@ -45,11 +45,16 @@ class TasksController < ApplicationController
   private
   
     def task_params
-      params.require(:task).permit(:name, :description)
+      params.permit(:name, :description)
     end
     
     def set_user
       @user = User.find(params[:user_id])
+    end
+    
+    def set_task
+      @task = @user.tasks.find_by(id: params[:id])
+      redirect_to user_tasks_url @user
     end
     
 end
