@@ -37,7 +37,9 @@ class TasksController < ApplicationController
     end
   end
   
-  
+  def destroy
+    redirect_to user_tasks_url
+  end
   
   def edit
   end
