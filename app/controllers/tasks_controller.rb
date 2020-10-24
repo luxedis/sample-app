@@ -45,6 +45,7 @@ class TasksController < ApplicationController
   end
   
   def edit
+    @task = @user.tasks.find(params[:id])
   end
   
   private
@@ -61,5 +62,4 @@ class TasksController < ApplicationController
       @task = @user.tasks.find_by(id: params[:id])
       redirect_to user_tasks_url @user
     end
-
 end
