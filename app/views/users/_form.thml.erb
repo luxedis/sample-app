@@ -1,0 +1,17 @@
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= render partial: 'shared/error_messages', locals: { object: @user } %> <!-- C11のエラーメッセージ -->
+  
+  <%= f.label :name, class: "label-form" %>
+  <%= f.text_firld :name, class: "form-control" %>
+  
+  <%= f.label :email, class: "label-form" %>
+  <%= f.text_firld :email, class: "form-control" %>
+  
+  <%= f.label :password, class: "label-form" %>
+  <%= f.text_firld :password, class: "form-control" %>
+  
+  <%= f.label :password_confirmation, class: "label-form" %>
+  <%= f.text_firld :password_confirmation, class: "form-control" %>
+  
+  <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-form" %>
+<% end %>
