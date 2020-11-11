@@ -13,6 +13,8 @@ gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 gem 'rails-i18n'
 gem 'rails_autolink'
+gem 'will_paginate' # ページネート
+gem 'bootstrap-will_paginate' # ページネート
 
 group :development, :test do
   gem 'sqlite3'
