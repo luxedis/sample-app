@@ -14,4 +14,35 @@ User.create!( name: "Sample User",
                email: email,
                password: password,
                password_confirmation: password)
-end             
+end
+
+puts "Users Created"
+
+admin_user = User.find(1)
+
+50.times do |n|
+  task_name = "タスク#{n+1}"
+  description = "タスク詳細#{n+1}"
+  admin_user.tasks.create!(name: task_name,
+                           description: description)
+end
+
+sample_user1 = User.find(2)
+
+50.times do |n|
+  task_name = "タスク#{n+1}"
+  description = "タスク詳細#{n+1}"
+  sample_user1.tasks.create!(name: task_name,
+                             description: description)
+end
+
+sample_user2 = User.find(3)
+
+50.times do |n|
+  task_name = "タスク#{n+1}"
+  description = "タスク詳細#{n+1}"
+  sample_user2.tasks.create!(name: task_name,
+                             description: description)
+end
+
+puts "Tasks Created"
