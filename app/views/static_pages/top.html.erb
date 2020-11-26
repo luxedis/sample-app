@@ -6,38 +6,36 @@
       <h1 id="top-main-title">TaskApp</h1>
       <p>TaskAppは簡易ToDo管理ツールです。</p>
       <p>↓↓初めてのご利用↓↓</p>
-      <% if logged_in? %>
-        <% if current_user.admin? %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
-        <% else %>
-          <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
-        <% end %>
+      <% if logged_in? && !current_user.admin? %> <!--ログイン状態かつユーザーが管理者ではない場合-->
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success disabled" %> <!--アカウント作成ボタンは押せない-->
+      <% else %>
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
       <% end %>
     </div>
   </div>
 
   <div class="col-md-4">
     <h1>ログイン</h1>
-    <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+    <%= form_with(scope: :session, url: login_path, local: true) do |f| %> <!--modelがない時にscope: :sessionの書き方をする-->
       <% if logged_in? %>
         <%= f.label :email, t("sessions.new.email"), class: "label-form" %>
         <%= f.email_field :email, class: "form-control", readonly: true %>
         
         <%= f.label :password, t("sessions.new.password"), class: "label-form" %>
-        <%= f.email_field :password, class: "form-control", readonly: true %>
+        <%= f.password_field :password, class: "form-control", readonly: true %>
         
         <%= f.submit "ログイン状態です", class: "btn btn-primary btn-block btn-form", disabled: "disabled" %>
       <% else %>
         <%= f.label :email, t("sessions.new.email"), class: "label-form" %>
-        <%= f.email_field :email, class: "form-control", readonly: true %>
+        <%= f.email_field :email, class: "form-control" %>
         
         <%= f.label :password, t("sessions.new.password"), class: "label-form" %>
-        <%= f.email_field :password, class: "form-control", readonly: true %>
+        <%= f.password_field :password, class: "form-control" %>
         
         <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember_me" do %>
           <%= f.check_box :remember_me, id: "remember_me" %>
           <span>ログイン情報を記憶する</span>
-      <% end %>
+        <% end %>
       
         <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-form" %>
       <% end %>
