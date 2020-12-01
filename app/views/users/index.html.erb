@@ -10,18 +10,26 @@
       </tr>
     </thead>
     
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user %></td>
-        <td>
-          <% if current_user.admin? && !current_user?(user) %> <!--管理者のみ削除ボタン表示-->
-            <%= link_to "削除", user, method: :delete,
-                data: { confirm: "削除してよろしいですか？" },
-                class: "btn btn-danger" %>
-          <% end %>  
-        </td>
-      </tr>
-    <% end %>
+    <tbody> <!--このタグが抜けていて削除メッセージに該当者の名前が出なかった-->
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, user %>
+          <% if user.admin? %>
+            <sapn class="label label-primary label-user-division">管理者</sapn>
+          <% else %>
+            <span class="label label-success label-user-division">一般</span>
+            <% end %>
+          </td>  
+          <td>
+            <% if current_user.admin? && !current_user?(user) %> <!--管理者のみ削除ボタン表示-->
+              <%= link_to "削除", user, method: :delete,
+                  data: { confirm: "#{user.name}を削除してよろしいですか？" },
+                  class: "btn btn-danger" %>
+            <% end %>  
+          </td>
+        </tr>
+      <% end %>
+    </tody>  
   </table>
   <%= will_paginate %>
 </div>

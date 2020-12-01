@@ -6,8 +6,8 @@
       <h1 id="top-main-title">TaskApp</h1>
       <p>TaskAppは簡易ToDo管理ツールです。</p>
       <p>↓↓初めてのご利用↓↓</p>
-      <% if logged_in? && !current_user.admin? %> <!--ログイン状態かつユーザーが管理者ではない場合-->
-        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success disabled" %> <!--アカウント作成ボタンは押せない-->
+      <% if logged_in? && !current_user.admin? %> <!--!は否定文、&&は'true/false'を返す、ログイン状態かつユーザーが管理者ではない場合-->
+        <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success disabled" %> <!--一般userはアカウント作成ボタンは押せない-->
       <% else %>
         <%= link_to "アカウント作成", signup_path, class: "btn btn-lg btn-success" %>
       <% end %>

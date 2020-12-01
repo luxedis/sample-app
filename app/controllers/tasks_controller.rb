@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_user
+  before_action :correct_user
+  
   
   def index
     @tasks = @user.tasks.order(created_at: :desc)
