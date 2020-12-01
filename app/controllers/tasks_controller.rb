@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_user
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   before_action :correct_user
   
@@ -62,7 +63,9 @@ class TasksController < ApplicationController
     end
     
     def set_task
-      @task = @user.tasks.find(params[:id])
-      redirect_to user_tasks_url @user
+      unless @task = @user.tasks.find(params[:id])
+        flash[:danger] = "権限がありません"
+        redirect_to user_tasks_url @user
+      end
     end
 end
